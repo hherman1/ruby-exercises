@@ -110,7 +110,7 @@ module DesugaringExercises
   # (Think: which names are local variables, and which are not?)
   #
   def desugared_implicit_self(recipients, event, message)
-    self.mail(message, {:to=> recipients.map {|recipient| recipient.email}, :subject => "You’re invited to " + event.title + " on " + event.date})
+    self.mail(message, {:to=> recipients.map {|recipient| recipient.email}, :subject => "You’re invited to " + event.title.to_s + " on " + event.date.to_s})
   end
   
   # In Ruby, unlike Python, there are no properties distinct from method calls. When you say `x.y`, you are
@@ -131,7 +131,7 @@ module DesugaringExercises
   # but structurally quite similar!
   #
   def desugared_implicit_parens(recipients, event, message)
-    self.mail(message, {:to=> recipients.map {|recipient| recipient.email()}, :subject => "You’re invited to " + event.title() + " on " + event.date()})
+    self.mail(message, {:to=> recipients.map {|recipient| recipient.email()}, :subject => "You’re invited to " + event.title().to_s() + " on " + event.date().to_s()})
   end
   
   # In Ruby, every value is an object and every action is a method call. That includes operators. A binary
@@ -155,7 +155,7 @@ module DesugaringExercises
   def desugared_operators(recipients, event, message)
     self.mail(message, {
       :to=> recipients.map {|recipient| recipient.email()}, 
-      :subject => "You’re invited to ".+(event.title().+(" on ".+(event.date())))
+      :subject => "You’re invited to ".+(event.title().to_s().+(" on ".+(event.date().to_s())))
     })
   end
   
