@@ -155,7 +155,7 @@ module DesugaringExercises
   def desugared_operators(recipients, event, message)
     self.mail(message, {
       :to=> recipients.map {|recipient| recipient.email()}, 
-      :subject => "You’re invited to ".+(event.title().to_s().+(" on ".+(event.date().to_s())))
+      :subject => (("You’re invited to ".+(event.title().to_s())).+(" on ")).+(event.date().to_s())
     })
   end
   
